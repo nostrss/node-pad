@@ -1,7 +1,5 @@
-import React from 'react';
 import HomePage from 'pages/home/home.container';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import CreatePage from 'pages/create/create.container';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
@@ -33,7 +31,6 @@ function App() {
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route>
-          <Route path='/create' element={<CreatePage />} />
           <Route path='/' element={<HomePage />} />
         </Route>
       </Routes>
