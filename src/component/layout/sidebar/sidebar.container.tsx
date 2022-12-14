@@ -22,9 +22,10 @@ export default function SideBar() {
     data: memoLists,
     isLoading: isFetching,
     refetch,
-  } = useQuery(['fetchdata'], async () =>
-    loadMemoList(firebaseDb, 'no-sign-in')
-  );
+  } = useQuery({
+    queryKey: ['fetchdata'],
+    queryFn: async () => loadMemoList(firebaseDb, 'no-sign-in'),
+  });
 
   const onSubmitMemoTitle = async (event: React.SyntheticEvent) => {
     event.preventDefault();
