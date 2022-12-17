@@ -1,4 +1,3 @@
-import React from 'react';
 import { TitleWrapper } from './home.style';
 
 export default function HomeUI() {

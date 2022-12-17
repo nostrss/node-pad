@@ -1,6 +1,8 @@
 import { LayoutSidebar } from './sidebar.style';
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from 'component/button/button';
+import SidebarItem from './sidebarItem/sidebarItem.container';
+import { INewTite, IPropsSidebarUI } from './sidebar.type';
 
 export default function SideBarUI({
   memoLists,
@@ -9,15 +11,15 @@ export default function SideBarUI({
   memoTitle,
   isFetching,
   isMutating,
-}: any) {
+}: IPropsSidebarUI) {
   return (
     <LayoutSidebar>
       <h2>My memo list</h2>
       {isFetching
         ? 'loading'
-        : memoLists?.map((doc: any) => (
+        : memoLists?.map((list: INewTite) => (
             <ul key={uuidv4()}>
-              <li>{doc.text}</li>
+              <SidebarItem list={list} />
             </ul>
           ))}
 

@@ -4,11 +4,7 @@ import React, { useState } from 'react';
 import { loadMemoList } from 'common/util';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useMutation, useQuery } from '@tanstack/react-query';
-
-interface INewTite {
-  text: string;
-  createdAt: any;
-}
+import { INewTite } from './sidebar.type';
 
 export default function SideBar() {
   const [memoTitle, setMemoTitle] = useState('');
