@@ -1,7 +1,10 @@
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 
-export const loadMemoList = async (firebaseDb: any, firebaseDocID: string) => {
-  const memoList = await getDocs(collection(firebaseDb, firebaseDocID));
+export const loadMemoList = async (
+  firebaseDb: any,
+  firebaseCollectionID: string
+) => {
+  const memoList = await getDocs(collection(firebaseDb, firebaseCollectionID));
   const memoItem: object[] = [];
   memoList.forEach((doc) => {
     memoItem.push(doc.data());
@@ -9,12 +12,14 @@ export const loadMemoList = async (firebaseDb: any, firebaseDocID: string) => {
   return memoItem;
 };
 
-export const createMemoTitle = async (
+export const loadMemo = async (
   firebaseDb: any,
-  firebaseDocID: string,
-  data: any
+  firebaseCollectionID: string,
+  firebaseDocID: string
 ) => {
-  const result = await addDoc(collection(firebaseDb, firebaseDocID), data);
+  const memo = await getDoc(
+    doc(firebaseDb, firebaseCollectionID, firebaseDocID)
+  );
 
-  return result;
+  return memo.data();
 };

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const nodePadSlice = createSlice({
   name: 'nodePad',
   initialState: {
-    titleList: [],
+    titleList: '',
   },
   reducers: {
     getMemoList: (state, data) => {

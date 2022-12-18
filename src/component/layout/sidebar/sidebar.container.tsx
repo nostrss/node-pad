@@ -2,21 +2,25 @@ import SideBarUI from './sidebar.presenter';
 import { firebaseDb } from 'App';
 import React, { useEffect, useState } from 'react';
 import { loadMemoList } from 'common/util';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { setDoc, serverTimestamp, doc } from 'firebase/firestore';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { INewTite } from './sidebar.type';
+import { INewTitle } from './sidebar.type';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMemoList } from 'redux/createSlice/createSlice';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function SideBar() {
   const [memoTitle, setMemoTitle] = useState('');
 
   const stateData = useSelector((state: any) => state.nodePad);
+  if (stateData.titleList)
+    console.log('stateData', JSON.parse(stateData.titleList));
+
   const dispatch = useDispatch();
 
   const { mutate: createTitle, isLoading: isMutating } = useMutation(
-    (newTitle: INewTite) => {
-      return addDoc(collection(firebaseDb, 'no-sign-in'), newTitle);
+    (newTitle: INewTitle) => {
+      return setDoc(doc(firebaseDb, 'no-sign-in', newTitle.itemId), newTitle);
     }
   );
 
@@ -25,7 +29,7 @@ export default function SideBar() {
     isLoading: isFetching,
     refetch,
   } = useQuery({
-    queryKey: ['fetchdata'],
+    queryKey: ['fetchdatalist'],
     queryFn: async () => loadMemoList(firebaseDb, 'no-sign-in'),
   });
 
@@ -33,12 +37,11 @@ export default function SideBar() {
     dispatch(getMemoList(JSON.stringify(memoLists)));
   }, [memoLists]);
 
-  console.log(stateData);
-  console.log(memoLists);
-
   const onSubmitMemoTitle = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    const newId = uuidv4();
     const memoObj = {
+      itemId: newId,
       text: memoTitle,
       createdAt: serverTimestamp(),
     };

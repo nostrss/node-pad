@@ -1,9 +1,10 @@
 import HomePage from 'pages/home/home.container';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import Memo from 'pages/memo/memo.container';
 // import { getAnalytics } from 'firebase/analytics';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,13 +29,14 @@ export const firebaseDb = getFirestore(app);
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route>
+          <Route path='/:id' element={<Memo />} />
           <Route path='/' element={<HomePage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
