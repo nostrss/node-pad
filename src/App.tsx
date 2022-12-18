@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import Memo from 'pages/memo/memo.container';
+import Layout from 'component/layout';
 // import { getAnalytics } from 'firebase/analytics';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -31,7 +32,7 @@ function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route>
+        <Route element={<Layout />}>
           <Route path='/:id' element={<Memo />} />
           <Route path='/' element={<HomePage />} />
         </Route>

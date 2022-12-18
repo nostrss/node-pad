@@ -6,9 +6,10 @@ import MemoUI from './memo.presenter';
 
 export default function Memo() {
   const { id: pageId } = useParams();
+  console.log('pageId', pageId);
 
   const { data: memoData, isLoading: isFetching } = useQuery({
-    queryKey: ['fetchdata'],
+    queryKey: ['fetchdata', pageId],
     queryFn: async () => loadMemo(firebaseDb, 'no-sign-in', pageId as string),
   });
 
