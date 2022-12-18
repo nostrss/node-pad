@@ -1,6 +1,6 @@
 import SidebarItemUI from './sidebarItem.presenter';
-import { IPropsSidebarItemUI } from './sidebarItem.type';
+import { IPropsSidebarItem } from './sidebarItem.type';
 
-export default function SidebarItem({ list }: IPropsSidebarItemUI) {
+export default function SidebarItem({ list }: IPropsSidebarItem) {
   return <SidebarItemUI list={list} />;
 }

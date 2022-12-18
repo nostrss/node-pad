@@ -4,7 +4,7 @@ import App from './App';
 import GlobalStyle from 'globalStyle';
 import { ThemeProvider } from 'styled-components';
 import theme from 'globalStyle/theme';
-import Layout from 'component/layout';
+// import Layout from 'component/layout';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import store from './redux/store';
 import { Provider } from 'react-redux';
@@ -21,9 +21,9 @@ root.render(
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          <Layout>
-            <App />
-          </Layout>
+          {/* <Layout> */}
+          <App />
+          {/* </Layout> */}
         </Provider>
       </QueryClientProvider>
     </ThemeProvider>

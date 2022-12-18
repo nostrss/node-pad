@@ -1,8 +1,9 @@
 import React, { ChangeEvent } from 'react';
 
-export interface INewTite {
+export interface INewTitle {
   text: string;
   createdAt: any;
+  itemId: string;
 }
 
 export interface IPropsSidebarUI {
