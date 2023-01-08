@@ -5,16 +5,12 @@ import { loadMemoList } from 'common/util';
 import { setDoc, serverTimestamp, doc } from 'firebase/firestore';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { INewTitle } from './sidebar.type';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getMemoList } from 'redux/createSlice/createSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function SideBar() {
   const [memoTitle, setMemoTitle] = useState('');
-
-  const stateData = useSelector((state: any) => state.nodePad);
-  if (stateData.titleList)
-    console.log('stateData', JSON.parse(stateData.titleList));
 
   const dispatch = useDispatch();
 
@@ -42,7 +38,7 @@ export default function SideBar() {
     const newId = uuidv4();
     const memoObj = {
       itemId: newId,
-      text: memoTitle,
+      text: [memoTitle],
       createdAt: serverTimestamp(),
     };
 
