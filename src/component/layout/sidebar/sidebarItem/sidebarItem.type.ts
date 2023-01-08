@@ -1,6 +1,6 @@
 export interface IPropsSidebarItem {
   list: {
-    text: string;
+    text: string[];
     createdAt: any;
     itemId: string;
   };
@@ -8,7 +8,7 @@ export interface IPropsSidebarItem {
 
 export interface IPropsSidebarItemUI {
   list: {
-    text: string;
+    text: string[];
     createdAt: any;
     itemId: string;
   };

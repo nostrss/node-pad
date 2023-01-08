@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 
 export interface INewTitle {
-  text: string;
+  text: string[];
   createdAt: any;
   itemId: string;
 }
