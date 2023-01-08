@@ -51,8 +51,8 @@ export default function SideBar() {
     setMemoTitle('');
   };
 
-  const onChangeText: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    setMemoTitle(event.target.value);
+  const onChangeText = (event: React.SyntheticEvent<HTMLInputElement>) => {
+    setMemoTitle((event.target as HTMLInputElement).value);
   };
 
   return (
